@@ -34,7 +34,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 0 auto 19px; /* 19px tương đương khoảng 0.5cm */
+  margin: 0 auto 21px; /* 19px tương đương khoảng 0.5cm */
   padding: 0;
 }
 
@@ -478,7 +478,7 @@ body {
     padding: 20px 10px 40px;
   }
   .toolbar {
-    margin-bottom: 19px; /* Giữ khoảng cách 0.5cm trên máy tính */
+    margin-bottom: 21px; /* Giữ khoảng cách 0.5cm trên máy tính */
   }
   .btn {
     flex: 0 0 auto;

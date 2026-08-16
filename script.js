@@ -1,136 +1,559 @@
-function updateStamp() {}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 
-// ===== Auto-grow textareas theo nội dung nhập =====
-function autoGrow(el) {
-  el.style.height = 'auto';
-  el.style.height = el.scrollHeight + 'px';
+:root {
+  --maroon: #7A1F2B;
+  --maroon-deep: #5C1620;
+  --gold: #C79A3E;
+  --cream: #FBF6EA;
+  --paper: #FDFAF2;
+  --ink: #2B1B12;
+  --ink-soft: #6B584A;
+  --line: #D8C79A;
 }
 
-function initAutoGrow() {
-  document.querySelectorAll('.section-body textarea, .announce textarea').forEach(t => {
-    autoGrow(t);
-    t.addEventListener('input', () => autoGrow(t));
-  });
+* {
+  box-sizing: border-box;
 }
 
-function regrowAll() {
-  document.querySelectorAll('.section-body textarea, .announce textarea').forEach(autoGrow);
+body {
+  margin: 0;
+  background: #E7DFC9;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 12px 0 24px;
+  overflow-x: hidden;
 }
 
-window.addEventListener('load', () => {
-  initAutoGrow();
-  // Đảm bảo co giãn đúng sau khi web font load xong (tránh sai chiều cao)
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(regrowAll);
+/* Thẻ bọc ngoài để tính toán scale vừa khít màn hình mobile */
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: top center;
+}
+
+/* ===== Toolbar (Cách tờ giấy 0.5cm = 19px) ===== */
+.toolbar {
+  width: 820px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 19px;
+  padding: 0;
+}
+
+.btn {
+  flex: 1;
+  max-width: 120px;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-pdf {
+  background: var(--maroon-deep);
+  color: #FBF6EA;
+}
+
+.btn-img {
+  background: var(--gold);
+  color: #2B1B12;
+}
+
+.btn-reset {
+  background: transparent;
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
+}
+
+/* ===== Outer ornate frame (Cố định 820px để xuất file chuẩn) ===== */
+.frame {
+  width: 820px;
+  min-width: 820px;
+  background: var(--paper);
+  border-radius: 20px;
+  border: 2px solid var(--maroon-deep);
+  box-shadow: 0 12px 34px rgba(60, 20, 10, 0.18);
+  padding: 8px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.frame-inner {
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  padding: 24px 16px;
+  position: relative;
+}
+
+/* corner brackets */
+.frame-inner::before,
+.frame-inner::after,
+.corner-bl,
+.corner-br {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: var(--maroon-deep);
+  border-style: solid;
+  border-width: 0;
+}
+
+.frame-inner::before {
+  top: -1px;
+  left: -1px;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-top-left-radius: 14px;
+}
+
+.frame-inner::after {
+  top: -1px;
+  right: -1px;
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-top-right-radius: 14px;
+}
+
+.corner-bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+  border-bottom-left-radius: 14px;
+}
+
+.corner-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+  border-bottom-right-radius: 14px;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--maroon-deep);
+  margin-bottom: 20px;
+}
+
+.logo {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+  margin-left: 0;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  color: var(--maroon-deep);
+  overflow: hidden;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header-center {
+  width: 100%;
+  text-align: center;
+}
+
+.school-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: var(--maroon-deep);
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+  outline: none;
+}
+
+.divider-orn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin: 4px 0;
+  color: var(--gold);
+  font-size: 11px;
+}
+
+.divider-orn::before,
+.divider-orn::after {
+  content: "";
+  height: 1px;
+  width: 50px;
+  background: var(--gold);
+}
+
+.doc-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--maroon);
+  letter-spacing: .02em;
+  margin: 2px 0 0;
+}
+
+/* ===== Info box ===== */
+.info-box {
+  border: 1.4px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px dotted var(--line);
+  padding-bottom: 6px;
+}
+
+.info-item svg {
+  flex: 0 0 auto;
+  color: var(--maroon);
+}
+
+.info-item label {
+  flex: 0 0 auto;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.info-item input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 13.5px;
+  color: var(--ink);
+  outline: none;
+  border-bottom: 1px dotted var(--line);
+  padding: 2px;
+}
+
+/* ===== Section blocks ===== */
+.section {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.section-tab {
+  flex: 0 0 auto;
+  background: var(--maroon);
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.section-tab svg {
+  width: 20px;
+  height: 20px;
+}
+
+.section-tab .lbl {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .03em;
+}
+
+.section-body {
+  flex: 1;
+  padding: 12px 14px;
+}
+
+.section-body textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 48px;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.section-body textarea::placeholder {
+  color: rgba(107, 88, 74, 0.45);
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* ===== Announcement box ===== */
+.announce {
+  border: 1.6px dashed var(--gold);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+
+.announce-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.announce-head svg {
+  color: var(--gold);
+}
+
+.announce textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.5;
+  min-height: 36px;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Footer ===== */
+.footer {
+  border-top: 1.4px solid var(--maroon-deep);
+  padding-top: 14px;
+}
+
+.company-name {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--maroon-deep);
+  letter-spacing: .02em;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.branches {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.branch-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cbx {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  border: 1.6px solid var(--maroon);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  background: #fff;
+}
+
+.cbx.checked {
+  background: var(--maroon);
+}
+
+.cbx.checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(40deg);
+}
+
+.branch-tag {
+  flex: 0 0 auto;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--maroon);
+  white-space: nowrap;
+}
+
+.branch-row input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 12px;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.footer-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--maroon-deep);
+  border-top: 1px dotted var(--line);
+  padding-top: 10px;
+}
+
+.footer-phone svg {
+  flex: 0 0 auto;
+  color: var(--maroon);
+}
+
+.footer-phone input {
+  border: none;
+  background: transparent;
+  outline: none;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--maroon-deep);
+  width: auto;
+  flex: 1;
+}
+
+.hide-on-export {
+  display: none !important;
+}
+
+/* ===== Desktop Layout (Màn hình lớn hơn 768px) ===== */
+@media (min-width: 768px) {
+  body {
+    padding: 20px 0 40px;
   }
-});
-
-function selectBranch(el) {
-  document.querySelectorAll('.branches .cbx').forEach(c => c.classList.remove('checked'));
-  el.classList.add('checked');
-}
-
-function applyConditionalRows() {
-  document.querySelectorAll('[data-conditional]').forEach(row => {
-    const input = row.querySelector('input, textarea');
-    const emptyValues = (row.dataset.emptyValues || '').split(',');
-    const val = (input.value || '').trim().toLowerCase();
-    if (val === '' || emptyValues.includes(val)) {
-      row.classList.add('hide-on-export');
-    } else {
-      row.classList.remove('hide-on-export');
-    }
-  });
-
-  document.querySelectorAll('[data-conditional-blank]').forEach(row => {
-    const ta = row.querySelector('textarea');
-    if (ta && !ta.value.trim()) {
-      row.classList.add('hide-on-export');
-    } else {
-      row.classList.remove('hide-on-export');
-    }
-  });
-}
-
-function clearConditionalRows() {
-  document.querySelectorAll('[data-conditional], [data-conditional-blank]').forEach(row => {
-    row.classList.remove('hide-on-export');
-  });
-}
-
-window.addEventListener('beforeprint', applyConditionalRows);
-window.addEventListener('afterprint', clearConditionalRows);
-
-// ===== Xuất ảnh chuẩn Desktop trên mọi thiết bị =====
-async function exportImage() {
-  const sheetNode = document.getElementById('sheet');
-  if (!sheetNode) return;
-
-  try {
-    regrowAll();
-    applyConditionalRows();
-
-    // 1. Sao chép value vào DOM & tạm thời xóa placeholder
-    const inputs = sheetNode.querySelectorAll('input, textarea');
-    inputs.forEach(el => {
-      if (el.tagName.toLowerCase() === 'textarea') {
-        el.textContent = el.value;
-      } else {
-        el.setAttribute('value', el.value);
-      }
-      el.dataset.oldPlaceholder = el.getAttribute('placeholder') || '';
-      el.removeAttribute('placeholder');
-    });
-
-    await document.fonts.ready;
-
-    // 2. Chụp ảnh với chiều rộng chuẩn Laptop 820px
-    const dataUrl = await htmlToImage.toPng(sheetNode, {
-      quality: 0.95,
-      pixelRatio: 2,
-      cacheBust: true,
-      backgroundColor: '#ffffff',
-      width: 820
-    });
-
-    // 3. Khôi phục lại trạng thái cũ
-    inputs.forEach(el => {
-      if (el.dataset.oldPlaceholder) {
-        el.setAttribute('placeholder', el.dataset.oldPlaceholder);
-        delete el.dataset.oldPlaceholder;
-      }
-    });
-    clearConditionalRows();
-
-    // 4. Tải file về
-    const lop = document.getElementById('lop')?.value.trim() || 'NhatKy';
-    const ngay = document.getElementById('ngay')?.value.trim() || 'Ngay';
-    const filename = `NhatKyLopHoc_${lop}_${ngay}.png`;
-
-    const link = document.createElement('a');
-    link.download = filename;
-    link.href = dataUrl;
-    link.click();
-  } catch (error) {
-    clearConditionalRows();
-    console.error('Lỗi khi xuất ảnh:', error);
-    alert('Có lỗi xảy ra khi tạo ảnh!');
+  .toolbar {
+    margin-bottom: 19px;
+  }
+  .btn {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .frame-inner {
+    padding: 50px 30px 48px;
+  }
+  .header {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .logo {
+    width: 92px;
+    height: 82px;
+    margin-left: 65px;
+  }
+  .doc-title {
+    font-size: 38px;
+  }
+  .info-box {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 30px;
+    padding: 16px 20px;
+  }
+  .section {
+    flex-direction: row;
+    min-height: 80px;
+  }
+  .section-tab {
+    flex: 0 0 150px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 10px;
+  }
+  .section-tab svg {
+    width: 30px;
+    height: 30px;
+  }
+  .section-body {
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+  }
+  .branches {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
   }
 }
 
-function resetForm() {
-  if (!confirm('Xoá toàn bộ nội dung đã nhập (trừ thông tin trung tâm và các cơ sở)?')) return;
-  document.querySelectorAll('.info-box input, .section-body textarea, .line-field input, .announce textarea').forEach(i => i.value = '');
-  regrowAll();
-}
-
-// Khởi tạo ngày hiện tại khi tải trang
-const today = new Date();
-const yyyy = today.getFullYear();
-const mm = String(today.getMonth() + 1).padStart(2, '0');
-const dd = String(today.getDate()).padStart(2, '0');
-
-const ngayInput = document.getElementById('ngay');
-if (ngayInput) {
-  ngayInput.value = `${yyyy}-${mm}-${dd}`;
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+  .toolbar {
+    display: none;
+  }
+  .frame {
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
 }

@@ -41,10 +41,21 @@ function applyConditionalRows() {
       row.classList.remove('hide-on-export');
     }
   });
+
+  document.querySelectorAll('[data-conditional-blank]').forEach(row => {
+    const ta = row.querySelector('textarea');
+    if (ta && !ta.value.trim()) {
+      row.classList.add('hide-on-export');
+    } else {
+      row.classList.remove('hide-on-export');
+    }
+  });
 }
 
 function clearConditionalRows() {
-  document.querySelectorAll('[data-conditional]').forEach(row => row.classList.remove('hide-on-export'));
+  document.querySelectorAll('[data-conditional], [data-conditional-blank]').forEach(row => {
+    row.classList.remove('hide-on-export');
+  });
 }
 
 window.addEventListener('beforeprint', applyConditionalRows);
@@ -71,12 +82,9 @@ async function exportImage() {
       el.removeAttribute('placeholder');
     });
 
-    // 2. Ép giao diện về chuẩn Laptop 820px
-    sheetNode.classList.add('exporting-desktop');
-
     await document.fonts.ready;
 
-    // 3. Chụp ảnh với chiều rộng chuẩn
+    // 2. Chụp ảnh với chiều rộng chuẩn Laptop 820px
     const dataUrl = await htmlToImage.toPng(sheetNode, {
       quality: 0.95,
       pixelRatio: 2,
@@ -85,8 +93,7 @@ async function exportImage() {
       width: 820
     });
 
-    // 4. Khôi phục lại trạng thái giao diện điện thoại
-    sheetNode.classList.remove('exporting-desktop');
+    // 3. Khôi phục lại trạng thái cũ
     inputs.forEach(el => {
       if (el.dataset.oldPlaceholder) {
         el.setAttribute('placeholder', el.dataset.oldPlaceholder);
@@ -95,7 +102,7 @@ async function exportImage() {
     });
     clearConditionalRows();
 
-    // 5. Tải file về
+    // 4. Tải file về
     const lop = document.getElementById('lop')?.value.trim() || 'NhatKy';
     const ngay = document.getElementById('ngay')?.value.trim() || 'Ngay';
     const filename = `NhatKyLopHoc_${lop}_${ngay}.png`;
@@ -105,7 +112,6 @@ async function exportImage() {
     link.href = dataUrl;
     link.click();
   } catch (error) {
-    sheetNode.classList.remove('exporting-desktop');
     clearConditionalRows();
     console.error('Lỗi khi xuất ảnh:', error);
     alert('Có lỗi xảy ra khi tạo ảnh!');

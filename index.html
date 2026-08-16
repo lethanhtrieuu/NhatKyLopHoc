@@ -14,13 +14,6 @@
 <!-- Bọc toolbar và frame vào page-wrapper để hỗ trợ tự động phóng to/thu nhỏ trên Mobile -->
 <div class="page-wrapper" id="pageWrapper">
 
-  <!-- TOOLBAR CÁCH TỜ GIẤY 0.5CM (19PX) -->
-  <div class="toolbar">
-    <button class="btn btn-pdf" onclick="window.print()">Xuất PDF</button>
-    <button class="btn btn-img" onclick="exportImage()">Xuất ảnh</button>
-    <button class="btn btn-reset" onclick="resetForm()">Xoá</button>
-  </div>
-
   <!-- FRAME TỜ GIẤY NHẬT KÝ -->
   <div class="frame">
     <div class="frame-inner" id="sheet">
@@ -98,10 +91,9 @@
         <div class="section-body"><textarea rows="2" placeholder="Không khí lớp học, mức độ tập trung, tiến bộ chung"></textarea></div>
       </div>
 
-      <!-- GHI CHÚ -->
+      <!-- GHI CHÚ (ĐÃ XÓA ICON) -->
       <div class="announce" data-conditional-blank>
         <div class="announce-head">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11v3a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15 8a4 4 0 0 1 0 7M18 5a8 8 0 0 1 0 13"/></svg>
           GHI CHÚ:
         </div>
         <textarea rows="1"></textarea>
@@ -139,6 +131,13 @@
       </div>
 
     </div>
+  </div>
+
+  <!-- TOOLBAR CHUYỂN XUỐNG DƯỚI (CÁCH KHUNG 0.5CM = 19PX) -->
+  <div class="toolbar">
+    <button class="btn btn-pdf" onclick="window.print()">Xuất PDF</button>
+    <button class="btn btn-img" onclick="exportImage()">Xuất ảnh</button>
+    <button class="btn btn-reset" onclick="resetForm()">Xoá</button>
   </div>
 
 </div>

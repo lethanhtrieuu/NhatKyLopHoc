@@ -541,19 +541,14 @@ body {
     justify-content: center;
     text-align: center;
   }
-  .section {
-    flex-direction: column;
+  .logo {
+    margin-left: 0;
   }
-  .section-tab {
-    flex-direction: row;
-    flex: none;
-    padding: 10px;
+  .school-name {
+    font-size: 12px;
+    letter-spacing: .06em;
   }
-  .branches {
-    grid-template-columns: 1fr;
+  .company-name {
+    font-size: 11.5px;
+    letter-spacing: 0;
   }
-  .footer-phone input {
-    width: auto;
-    text-align: center;
-  }
-}

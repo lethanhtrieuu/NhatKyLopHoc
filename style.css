@@ -25,40 +25,38 @@ body {
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  padding: 12px 0 24px;
+  padding: 20px 0 40px;
   overflow-x: hidden;
 }
 
-/* Thẻ bọc ngoài để tính toán scale vừa khít màn hình mobile */
+/* Thẻ bọc ngoài xử lý phóng to / thu nhỏ vừa màn hình */
 .page-wrapper {
-  width: 100%;
+  width: 820px;
   display: flex;
   flex-direction: column;
   align-items: center;
   transform-origin: top center;
 }
 
-/* ===== Outer ornate frame (Cố định 820px để xuất file chuẩn) ===== */
+/* ===== FRAME TỜ GIẤY (CỐ ĐỊNH 820PX) ===== */
 .frame {
   width: 820px;
-  min-width: 820px;
   background: var(--paper);
   border-radius: 20px;
   border: 2px solid var(--maroon-deep);
   box-shadow: 0 12px 34px rgba(60, 20, 10, 0.18);
   padding: 8px;
   position: relative;
-  margin: 0 auto;
 }
 
 .frame-inner {
   border: 1px solid var(--gold);
   border-radius: 16px;
-  padding: 24px 16px;
+  padding: 50px 30px 48px;
   position: relative;
 }
 
-/* corner brackets */
+/* Góc hoạ tiết */
 .frame-inner::before,
 .frame-inner::after,
 .corner-bl,
@@ -104,22 +102,19 @@ body {
   border-bottom-right-radius: 14px;
 }
 
-/* ===== Toolbar Nằm Ở Dưới (Cách tờ giấy 0.5cm = 19px) ===== */
+/* ===== TOOLBAR DƯỚI ===== */
 .toolbar {
   width: 820px;
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 19px auto 0;
-  padding: 0;
+  margin-top: 19px;
 }
 
 .btn {
-  flex: 1;
-  max-width: 120px;
   border: none;
   border-radius: 7px;
-  padding: 9px 12px;
+  padding: 9px 16px;
   font-weight: 600;
   font-size: 13.5px;
   cursor: pointer;
@@ -131,28 +126,16 @@ body {
   transform: scale(0.97);
 }
 
-.btn-pdf {
-  background: var(--maroon-deep);
-  color: #FBF6EA;
-}
+.btn-pdf { background: var(--maroon-deep); color: #FBF6EA; }
+.btn-img { background: var(--gold); color: #2B1B12; }
+.btn-reset { background: transparent; color: var(--maroon); border: 1px solid var(--maroon); }
 
-.btn-img {
-  background: var(--gold);
-  color: #2B1B12;
-}
-
-.btn-reset {
-  background: transparent;
-  color: var(--maroon);
-  border: 1px solid var(--maroon);
-}
-
-/* ===== Header ===== */
+/* ===== HEADER ===== */
 .header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--maroon-deep);
   margin-bottom: 20px;
@@ -160,9 +143,9 @@ body {
 
 .logo {
   flex: 0 0 auto;
-  width: 76px;
-  height: 76px;
-  margin-left: 0;
+  width: 92px;
+  height: 82px;
+  margin-left: 65px;
   border-radius: 50%;
   border: 2px solid var(--gold);
   display: flex;
@@ -219,21 +202,21 @@ body {
 .doc-title {
   font-family: 'Playfair Display', serif;
   font-weight: 800;
-  font-size: 28px;
+  font-size: 38px;
   color: var(--maroon);
   letter-spacing: .02em;
   margin: 2px 0 0;
 }
 
-/* ===== Info box ===== */
+/* ===== INFO BOX (GIỮ NGUYÊN 2 CỘT NẰM NGANG) ===== */
 .info-box {
   border: 1.4px solid var(--line);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 16px 20px;
   margin-bottom: 18px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 30px;
 }
 
 .info-item {
@@ -244,34 +227,15 @@ body {
   padding-bottom: 6px;
 }
 
-.info-item svg {
-  flex: 0 0 auto;
-  color: var(--maroon);
-}
+.info-item svg { flex: 0 0 auto; color: var(--maroon); }
+.info-item label { flex: 0 0 auto; font-weight: 700; font-size: 13px; color: var(--ink); white-space: nowrap; }
+.info-item input { flex: 1; border: none; background: transparent; font-size: 13.5px; color: var(--ink); outline: none; border-bottom: 1px dotted var(--line); padding: 2px; }
 
-.info-item label {
-  flex: 0 0 auto;
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.info-item input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-size: 13.5px;
-  color: var(--ink);
-  outline: none;
-  border-bottom: 1px dotted var(--line);
-  padding: 2px;
-}
-
-/* ===== Section blocks ===== */
+/* ===== SECTIONS (NHÃN BÊN TRÁI, Ô NHẬP BÊN PHẢI) ===== */
 .section {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  min-height: 80px;
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
@@ -279,15 +243,15 @@ body {
 }
 
 .section-tab {
-  flex: 0 0 auto;
+  flex: 0 0 150px;
   background: var(--maroon);
   color: #fff;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 10px 14px;
+  justify-content: center;
+  padding: 16px 10px;
+  text-align: center;
 }
 
 .section-tab .lbl {
@@ -299,7 +263,9 @@ body {
 
 .section-body {
   flex: 1;
-  padding: 12px 14px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
 }
 
 .section-body textarea {
@@ -326,7 +292,7 @@ body {
   font-size: 14px;
 }
 
-/* ===== Announcement box ===== */
+/* ===== GHI CHÚ (KHÔNG ICON) ===== */
 .announce {
   border: 1.6px dashed var(--gold);
   border-radius: 12px;
@@ -359,7 +325,7 @@ body {
   padding: 0;
 }
 
-/* ===== Footer ===== */
+/* ===== FOOTER ===== */
 .footer {
   border-top: 1.4px solid var(--maroon-deep);
   padding-top: 14px;
@@ -381,8 +347,8 @@ body {
 
 .branches {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
   margin-bottom: 12px;
 }
 
@@ -403,10 +369,7 @@ body {
   background: #fff;
 }
 
-.cbx.checked {
-  background: var(--maroon);
-}
-
+.cbx.checked { background: var(--maroon); }
 .cbx.checked::after {
   content: "";
   position: absolute;
@@ -449,11 +412,7 @@ body {
   padding-top: 10px;
 }
 
-.footer-phone svg {
-  flex: 0 0 auto;
-  color: var(--maroon);
-}
-
+.footer-phone svg { flex: 0 0 auto; color: var(--maroon); }
 .footer-phone input {
   border: none;
   background: transparent;
@@ -466,74 +425,9 @@ body {
   flex: 1;
 }
 
-/* ===== Desktop Layout (Màn hình lớn hơn 768px) ===== */
-@media (min-width: 768px) {
-  body {
-    padding: 20px 0 40px;
-  }
-  .toolbar {
-    margin-top: 19px;
-  }
-  .btn {
-    flex: 0 0 auto;
-    width: auto;
-  }
-  .frame-inner {
-    padding: 50px 30px 48px;
-  }
-  .header {
-    flex-direction: row;
-    gap: 16px;
-  }
-  .logo {
-    width: 92px;
-    height: 82px;
-    margin-left: 65px;
-  }
-  .doc-title {
-    font-size: 38px;
-  }
-  .info-box {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 30px;
-    padding: 16px 20px;
-  }
-  .section {
-    flex-direction: row;
-    min-height: 80px;
-  }
-  .section-tab {
-    flex: 0 0 150px;
-    flex-direction: column;
-    justify-content: center;
-    padding: 16px 10px;
-  }
-  .section-body {
-    padding: 12px 18px;
-    display: flex;
-    align-items: center;
-  }
-  .branches {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px 20px;
-  }
-}
-
 @media print {
-  body {
-    background: #fff;
-    padding: 0;
-  }
-  .toolbar {
-    display: none;
-  }
-  .frame {
-    box-shadow: none;
-    width: 100%;
-    max-width: 100%;
-  }
-  @page {
-    size: A4;
-    margin: 8mm;
-  }
+  body { background: #fff; padding: 0; }
+  .toolbar { display: none; }
+  .frame { box-shadow: none; }
+  @page { size: A4; margin: 8mm; }
 }

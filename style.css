@@ -478,7 +478,7 @@ body {
     padding: 20px 10px 40px;
   }
   .toolbar {
-    margin-bottom: 16px;
+    margin-bottom: 19px; /* Giữ khoảng cách 0.5cm trên máy tính */
   }
   .btn {
     flex: 0 0 auto;

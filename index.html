@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=850, initial-scale=0.45, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nhật ký lớp học</title>
   <link rel="stylesheet" href="style.css">
 
@@ -11,130 +11,159 @@
 </head>
 <body>
 
-<div class="frame">
-  <div class="frame-inner" id="sheet">
-    <div class="corner-bl"></div><div class="corner-br"></div>
+<!-- Bọc toolbar và frame vào page-wrapper để hỗ trợ tự động phóng to/thu nhỏ trên Mobile -->
+<div class="page-wrapper" id="pageWrapper">
 
-    <!-- HEADER -->
-    <div class="header">
-      <div class="logo">
-        <img src="logo.png" alt="Logo Thăng Long">
-      </div>
-      <div class="header-center">
-        <input class="school-name" value="TRUNG TÂM THĂNG LONG">
-        <div class="divider-orn">✦</div>
-        <div class="doc-title">NHẬT KÝ LỚP HỌC</div>
-      </div>
-    </div>
-
-    <!-- INFO -->
-    <div class="info-box">
-      <div class="info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
-        <label>Ngày:</label><input type="date" id="ngay" onchange="updateStamp()">
-      </div>
-      <div class="info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg>
-        <label>Mã lớp:</label><input type="text" id="lop">
-      </div>
-      <div class="info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
-        <label>Giáo viên:</label><input type="text" placeholder="Họ tên" id="gv">
-      </div>
-      
-      <!-- Hàng Trợ giảng: Tự ẩn hoàn toàn khi xuất file nếu để trống -->
-      <div class="info-item" id="rowTrogiang" data-conditional data-empty-values="không,khong,0">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <label>Trợ giảng:</label><input type="text" placeholder="Để trống nếu không có" id="trogiang">
-      </div>
-
-      <div class="info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 1 0 7.75"/></svg>
-        <label>Sĩ số:</label><input type="number" placeholder="20" id="siso">
-      </div>
-      <div class="info-item">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-3.6-3.6"/></svg>
-        <label>Vắng:</label><input type="text" placeholder="Tên HS vắng hoặc số lượng" id="vang">
-      </div>
-    </div>
-
-    <!-- SECTIONS -->
-    <div class="section">
-      <div class="section-tab">
-        <div class="lbl">BÀI HỌC</div>
-      </div>
-      <div class="section-body"><textarea rows="1" placeholder="Nội dung bài học hôm nay"></textarea></div>
-    </div>
-
-    <div class="section">
-      <div class="section-tab">
-        <div class="lbl">BÀI TẬP LỚP</div>
-      </div>
-      <div class="section-body"><textarea rows="1" placeholder="Bài tập, hoạt động thực hành tại lớp"></textarea></div>
-    </div>
-
-    <div class="section">
-      <div class="section-tab">
-        <div class="lbl">BÀI TẬP NHÀ</div>
-      </div>
-      <div class="section-body"><textarea rows="1" placeholder="Bài tập về nhà, chuẩn bị cho buổi sau"></textarea></div>
-    </div>
-
-    <div class="section">
-      <div class="section-tab">
-        <div class="lbl">NHẬN XÉT<br>BUỔI HỌC</div>
-      </div>
-      <div class="section-body"><textarea rows="2" placeholder="Không khí lớp học, mức độ tập trung, tiến bộ chung"></textarea></div>
-    </div>
-
-    <!-- GHI CHÚ -->
-    <div class="announce" data-conditional-blank>
-      <div class="announce-head">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11v3a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15 8a4 4 0 0 1 0 7M18 5a8 8 0 0 1 0 13"/></svg>
-        GHI CHÚ:
-      </div>
-      <textarea rows="1"></textarea>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <input class="company-name" value="CÔNG TY TNHH GIÁO DỤC &amp; ĐÀO TẠO THĂNG LONG">
-      <div class="branches">
-        <div class="branch-row">
-          <div class="cbx checked" onclick="selectBranch(this)"></div>
-          <span class="branch-tag">📍 CN 1:</span>
-          <input type="text" value="24B Nguyễn Đình Chiểu, Phường Lâm Viên">
-        </div>
-        <div class="branch-row">
-          <div class="cbx" onclick="selectBranch(this)"></div>
-          <span class="branch-tag">📍 CN 2:</span>
-          <input type="text" value="409 Hai Bà Trưng, Phường Cam Ly">
-        </div>
-        <div class="branch-row">
-          <div class="cbx" onclick="selectBranch(this)"></div>
-          <span class="branch-tag">📍 CN 3:</span>
-          <input type="text" value="44/4 Nguyễn Đình Chiểu, Phường Lâm Viên">
-        </div>
-        <div class="branch-row">
-          <div class="cbx" onclick="selectBranch(this)"></div>
-          <span class="branch-tag">📍 CN 4:</span>
-          <input type="text" value="41 Kim Đồng, Phường Cam Ly">
-        </div>
-      </div>
-      <div class="footer-phone">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
-        <input type="text" value="0931210091 (Cô Kiều Anh)">
-      </div>
-    </div>
-
+  <!-- TOOLBAR CÁCH TỜ GIẤY 0.5CM (19PX) -->
+  <div class="toolbar">
+    <button class="btn btn-pdf" onclick="window.print()">Xuất PDF</button>
+    <button class="btn btn-img" onclick="exportImage()">Xuất ảnh</button>
+    <button class="btn btn-reset" onclick="resetForm()">Xoá</button>
   </div>
+
+  <!-- FRAME TỜ GIẤY NHẬT KÝ -->
+  <div class="frame">
+    <div class="frame-inner" id="sheet">
+      <div class="corner-bl"></div><div class="corner-br"></div>
+
+      <!-- HEADER -->
+      <div class="header">
+        <div class="logo">
+          <img src="logo.png" alt="Logo Thăng Long">
+        </div>
+        <div class="header-center">
+          <input class="school-name" value="TRUNG TÂM THĂNG LONG">
+          <div class="divider-orn">✦</div>
+          <div class="doc-title">NHẬT KÝ LỚP HỌC</div>
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="info-box">
+        <div class="info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+          <label>Ngày:</label><input type="date" id="ngay" onchange="updateStamp()">
+        </div>
+        <div class="info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg>
+          <label>Mã lớp:</label><input type="text" id="lop">
+        </div>
+        <div class="info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6"/></svg>
+          <label>Giáo viên:</label><input type="text" placeholder="Họ tên" id="gv">
+        </div>
+        
+        <!-- Hàng Trợ giảng -->
+        <div class="info-item" id="rowTrogiang" data-conditional data-empty-values="không,khong,0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <label>Trợ giảng:</label><input type="text" placeholder="Để trống nếu không có" id="trogiang">
+        </div>
+
+        <div class="info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 1 0 7.75"/></svg>
+          <label>Sĩ số:</label><input type="number" placeholder="20" id="siso">
+        </div>
+        <div class="info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-3.6-3.6"/></svg>
+          <label>Vắng:</label><input type="text" placeholder="Tên HS vắng hoặc số lượng" id="vang">
+        </div>
+      </div>
+
+      <!-- SECTIONS -->
+      <div class="section">
+        <div class="section-tab">
+          <div class="lbl">BÀI HỌC</div>
+        </div>
+        <div class="section-body"><textarea rows="1" placeholder="Nội dung bài học hôm nay"></textarea></div>
+      </div>
+
+      <div class="section">
+        <div class="section-tab">
+          <div class="lbl">BÀI TẬP LỚP</div>
+        </div>
+        <div class="section-body"><textarea rows="1" placeholder="Bài tập, hoạt động thực hành tại lớp"></textarea></div>
+      </div>
+
+      <div class="section">
+        <div class="section-tab">
+          <div class="lbl">BÀI TẬP NHÀ</div>
+        </div>
+        <div class="section-body"><textarea rows="1" placeholder="Bài tập về nhà, chuẩn bị cho buổi sau"></textarea></div>
+      </div>
+
+      <div class="section">
+        <div class="section-tab">
+          <div class="lbl">NHẬN XÉT<br>BUỔI HỌC</div>
+        </div>
+        <div class="section-body"><textarea rows="2" placeholder="Không khí lớp học, mức độ tập trung, tiến bộ chung"></textarea></div>
+      </div>
+
+      <!-- GHI CHÚ -->
+      <div class="announce" data-conditional-blank>
+        <div class="announce-head">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11v3a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15 8a4 4 0 0 1 0 7M18 5a8 8 0 0 1 0 13"/></svg>
+          GHI CHÚ:
+        </div>
+        <textarea rows="1"></textarea>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <input class="company-name" value="CÔNG TY TNHH GIÁO DỤC &amp; ĐÀO TẠO THĂNG LONG">
+        <div class="branches">
+          <div class="branch-row">
+            <div class="cbx checked" onclick="selectBranch(this)"></div>
+            <span class="branch-tag">📍 CN 1:</span>
+            <input type="text" value="24B Nguyễn Đình Chiểu, Phường Lâm Viên">
+          </div>
+          <div class="branch-row">
+            <div class="cbx" onclick="selectBranch(this)"></div>
+            <span class="branch-tag">📍 CN 2:</span>
+            <input type="text" value="409 Hai Bà Trưng, Phường Cam Ly">
+          </div>
+          <div class="branch-row">
+            <div class="cbx" onclick="selectBranch(this)"></div>
+            <span class="branch-tag">📍 CN 3:</span>
+            <input type="text" value="44/4 Nguyễn Đình Chiểu, Phường Lâm Viên">
+          </div>
+          <div class="branch-row">
+            <div class="cbx" onclick="selectBranch(this)"></div>
+            <span class="branch-tag">📍 CN 4:</span>
+            <input type="text" value="41 Kim Đồng, Phường Cam Ly">
+          </div>
+        </div>
+        <div class="footer-phone">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <input type="text" value="0931210091 (Cô Kiều Anh)">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
-<div class="toolbar">
-  <button class="btn btn-pdf" onclick="window.print()">Xuất PDF</button>
-  <button class="btn btn-img" onclick="exportImage()">Xuất ảnh</button>
-  <button class="btn btn-reset" onclick="resetForm()">Xoá</button>
-</div>
+<!-- Auto-Scale Script cho Điện thoại -->
+<script>
+  function autoFitMobile() {
+    const wrapper = document.getElementById('pageWrapper');
+    const baseWidth = 820; // Chiều rộng gốc chuẩn của tờ giấy
+    const padding = 16;    // Lề 2 bên màn hình (px)
+    const screenWidth = window.innerWidth - padding;
+
+    if (screenWidth < baseWidth) {
+      const scale = screenWidth / baseWidth;
+      wrapper.style.transform = `scale(${scale})`;
+      wrapper.style.marginBottom = `-${(1 - scale) * wrapper.offsetHeight}px`;
+    } else {
+      wrapper.style.transform = 'none';
+      wrapper.style.marginBottom = '0px';
+    }
+  }
+
+  window.addEventListener('load', autoFitMobile);
+  window.addEventListener('resize', autoFitMobile);
+</script>
 
 <script src="script.js"></script>
 </body>

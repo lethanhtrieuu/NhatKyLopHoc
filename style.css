@@ -23,8 +23,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 20px 10px 60px;
+  justify-content: center; /* Căn giữa khung theo chiều dọc màn hình */
+  min-height: 100vh;      /* Chiều cao phủ hết màn hình thiết bị */
+  padding: 20px 10px;
 }
 
 .toolbar {
@@ -33,7 +34,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 18px auto 0;
+  margin: 0 auto 18px;
   padding: 0;
 }
 
@@ -69,7 +70,7 @@ body {
   padding: 7px 15px;
 }
 
-/* ===== Outer ornate frame (Cố định 820px chuẩn Desktop) ===== */
+/* ===== Outer ornate frame ===== */
 .frame {
   width: 820px;
   min-width: 820px;
@@ -79,7 +80,7 @@ body {
   box-shadow: 0 12px 34px rgba(60, 20, 10, 0.18);
   padding: 8px;
   position: relative;
-  margin: 0 auto;
+  margin: auto 0; /* Giúp khung tự căn đều khoảng trống trên và dưới */
 }
 
 .frame-inner {

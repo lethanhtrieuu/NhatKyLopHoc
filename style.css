@@ -23,30 +23,32 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Căn giữa khung theo chiều dọc màn hình */
-  min-height: 100vh;      /* Chiều cao phủ hết màn hình thiết bị */
-  padding: 20px 10px;
+  justify-content: flex-start;
+  padding: 12px 10px 24px;
 }
 
+/* ===== Toolbar đưa lên trên, hiển thị ngay khi mở app ===== */
 .toolbar {
   width: 100%;
   max-width: 820px;
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 0 auto 18px;
+  margin: 0 0 12px 0;
   padding: 0;
 }
 
 .btn {
-  flex: 0 0 auto;
+  flex: 1;
+  max-width: 120px;
   border: none;
   border-radius: 7px;
-  padding: 8px 16px;
+  padding: 9px 12px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 13.5px;
   cursor: pointer;
   font-family: 'Source Sans 3', sans-serif;
+  text-align: center;
 }
 
 .btn:active {
@@ -67,26 +69,25 @@ body {
   background: transparent;
   color: var(--maroon);
   border: 1px solid var(--maroon);
-  padding: 7px 15px;
 }
 
 /* ===== Outer ornate frame ===== */
 .frame {
-  width: 820px;
-  min-width: 820px;
+  width: 100%;
+  max-width: 820px;
   background: var(--paper);
-  border-radius: 26px;
+  border-radius: 20px;
   border: 2px solid var(--maroon-deep);
   box-shadow: 0 12px 34px rgba(60, 20, 10, 0.18);
   padding: 8px;
   position: relative;
-  margin: auto 0; /* Giúp khung tự căn đều khoảng trống trên và dưới */
+  margin: 0 auto;
 }
 
 .frame-inner {
   border: 1px solid var(--gold);
-  border-radius: 20px;
-  padding: 50px 30px 48px;
+  border-radius: 16px;
+  padding: 24px 16px;
   position: relative;
 }
 
@@ -109,7 +110,7 @@ body {
   left: -1px;
   border-top-width: 3px;
   border-left-width: 3px;
-  border-top-left-radius: 16px;
+  border-top-left-radius: 14px;
 }
 
 .frame-inner::after {
@@ -117,7 +118,7 @@ body {
   right: -1px;
   border-top-width: 3px;
   border-right-width: 3px;
-  border-top-right-radius: 16px;
+  border-top-right-radius: 14px;
 }
 
 .corner-bl {
@@ -125,7 +126,7 @@ body {
   left: -1px;
   border-bottom-width: 3px;
   border-left-width: 3px;
-  border-bottom-left-radius: 16px;
+  border-bottom-left-radius: 14px;
 }
 
 .corner-br {
@@ -133,24 +134,25 @@ body {
   right: -1px;
   border-bottom-width: 3px;
   border-right-width: 3px;
-  border-bottom-right-radius: 16px;
+  border-bottom-right-radius: 14px;
 }
 
 /* ===== Header ===== */
 .header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--maroon-deep);
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .logo {
   flex: 0 0 auto;
-  width: 92px;
-  height: 82px;
-  margin-left: 65px;
+  width: 76px;
+  height: 76px;
+  margin-left: 0;
   border-radius: 50%;
   border: 2px solid var(--gold);
   display: flex;
@@ -168,15 +170,15 @@ body {
 }
 
 .header-center {
-  flex: 1;
+  width: 100%;
   text-align: center;
 }
 
 .school-name {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 15px;
-  letter-spacing: .12em;
+  font-size: 14px;
+  letter-spacing: .1em;
   color: var(--maroon-deep);
   text-transform: uppercase;
   border: none;
@@ -200,14 +202,14 @@ body {
 .divider-orn::after {
   content: "";
   height: 1px;
-  width: 60px;
+  width: 50px;
   background: var(--gold);
 }
 
 .doc-title {
   font-family: 'Playfair Display', serif;
   font-weight: 800;
-  font-size: 38px;
+  font-size: 28px;
   color: var(--maroon);
   letter-spacing: .02em;
   margin: 2px 0 0;
@@ -216,20 +218,20 @@ body {
 /* ===== Info box ===== */
 .info-box {
   border: 1.4px solid var(--line);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin-bottom: 22px;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 30px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   border-bottom: 1px dotted var(--line);
-  padding-bottom: 7px;
+  padding-bottom: 6px;
 }
 
 .info-item svg {
@@ -240,7 +242,7 @@ body {
 .info-item label {
   flex: 0 0 auto;
   font-weight: 700;
-  font-size: 13.5px;
+  font-size: 13px;
   color: var(--ink);
   white-space: nowrap;
 }
@@ -249,53 +251,50 @@ body {
   flex: 1;
   border: none;
   background: transparent;
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--ink);
   outline: none;
   border-bottom: 1px dotted var(--line);
-  padding: 2px 4px;
+  padding: 2px;
 }
 
-/* ===== Section blocks (bài học, bài tập...) ===== */
+/* ===== Section blocks ===== */
 .section {
   display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 16px;
-  min-height: 80px;
+  margin-bottom: 14px;
 }
 
 .section-tab {
-  flex: 0 0 150px;
+  flex: 0 0 auto;
   background: var(--maroon);
   color: #fff;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px 10px;
-  text-align: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 14px;
 }
 
 .section-tab svg {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .section-tab .lbl {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 14.5px;
+  font-size: 14px;
   letter-spacing: .03em;
 }
 
 .section-body {
   flex: 1;
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
+  padding: 12px 14px;
 }
 
 .section-body textarea {
@@ -305,11 +304,11 @@ body {
   resize: none;
   background: transparent;
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--ink);
   line-height: 1.5;
-  min-height: 24px;
+  min-height: 48px;
   overflow: hidden;
   display: block;
   margin: 0;
@@ -319,50 +318,16 @@ body {
 .section-body textarea::placeholder {
   color: rgba(107, 88, 74, 0.45);
   font-style: italic;
-  font-size: 15px;
-}
-
-/* ===== single line fields ===== */
-.line-field {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 11px 16px;
-  margin-bottom: 10px;
-}
-
-.line-field svg {
-  flex: 0 0 auto;
-  color: var(--maroon);
-}
-
-.line-field label {
-  flex: 0 0 auto;
-  font-weight: 700;
-  font-size: 13.5px;
-  white-space: nowrap;
-}
-
-.line-field input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
   font-size: 14px;
-  color: var(--ink);
-  border-bottom: 1px dotted var(--line);
-  padding: 3px 4px;
 }
 
-/* ===== announcement box ===== */
+/* ===== Announcement box ===== */
 .announce {
   border: 1.6px dashed var(--gold);
-  border-radius: 14px;
-  padding: 14px 18px;
+  border-radius: 12px;
+  padding: 12px 14px;
   margin-top: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .announce-head {
@@ -370,9 +335,9 @@ body {
   align-items: center;
   gap: 8px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--ink);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .announce-head svg {
@@ -386,59 +351,53 @@ body {
   resize: none;
   background: transparent;
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 15.5px;
+  font-size: 14.5px;
   color: var(--ink);
   line-height: 1.5;
-  min-height: 24px;
+  min-height: 36px;
   overflow: hidden;
   display: block;
   margin: 0;
-  padding: 2px 0 0 0;
+  padding: 0;
 }
 
-.announce textarea::placeholder {
-  color: rgba(107, 88, 74, 0.45);
-  font-style: italic;
-  font-size: 14.5px;
-}
-
-/* ===== footer ===== */
+/* ===== Footer ===== */
 .footer {
   border-top: 1.4px solid var(--maroon-deep);
-  padding-top: 16px;
+  padding-top: 14px;
 }
 
 .company-name {
   text-align: center;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 15.5px;
+  font-size: 14px;
   color: var(--maroon-deep);
   letter-spacing: .02em;
   border: none;
   background: transparent;
   outline: none;
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .branches {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px 20px;
+  grid-template-columns: 1fr;
+  gap: 8px;
   margin-bottom: 12px;
 }
 
 .branch-row {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
 }
 
 .cbx {
   flex: 0 0 auto;
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   border: 1.6px solid var(--maroon);
   border-radius: 4px;
   cursor: pointer;
@@ -455,8 +414,8 @@ body {
   position: absolute;
   left: 4px;
   top: 0px;
-  width: 5px;
-  height: 9px;
+  width: 4px;
+  height: 8px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(40deg);
@@ -465,7 +424,7 @@ body {
 .branch-tag {
   flex: 0 0 auto;
   font-weight: 700;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--maroon);
   white-space: nowrap;
 }
@@ -475,7 +434,7 @@ body {
   border: none;
   background: transparent;
   outline: none;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--ink);
   min-width: 0;
 }
@@ -485,7 +444,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--maroon-deep);
   border-top: 1px dotted var(--line);
@@ -502,15 +461,72 @@ body {
   background: transparent;
   outline: none;
   text-align: left;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--maroon-deep);
-  width: 23ch;
-  flex: 0 1 auto;
+  width: auto;
+  flex: 1;
 }
 
 .hide-on-export {
   display: none !important;
+}
+
+/* ===== Desktop Layout (Màn hình lớn hơn 768px) ===== */
+@media (min-width: 768px) {
+  body {
+    padding: 20px 10px 40px;
+  }
+  .toolbar {
+    margin-bottom: 16px;
+  }
+  .btn {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  .frame-inner {
+    padding: 50px 30px 48px;
+  }
+  .header {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .logo {
+    width: 92px;
+    height: 82px;
+    margin-left: 65px;
+  }
+  .doc-title {
+    font-size: 38px;
+  }
+  .info-box {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 30px;
+    padding: 16px 20px;
+  }
+  .section {
+    flex-direction: row;
+    min-height: 80px;
+  }
+  .section-tab {
+    flex: 0 0 150px;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 10px;
+  }
+  .section-tab svg {
+    width: 30px;
+    height: 30px;
+  }
+  .section-body {
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+  }
+  .branches {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+  }
 }
 
 @media print {

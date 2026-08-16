@@ -143,16 +143,18 @@
 </div>
 
 <!-- Auto-Scale Script cho Điện thoại -->
+<!-- Auto-Scale Script giữ nguyên thiết kế và căn vừa full màn hình điện thoại -->
 <script>
   function autoFitMobile() {
     const wrapper = document.getElementById('pageWrapper');
-    const baseWidth = 820; // Chiều rộng gốc chuẩn của tờ giấy
-    const padding = 16;    // Lề 2 bên màn hình (px)
+    const baseWidth = 820; // Chiều rộng gốc thiết kế 820px
+    const padding = 20;    // Lề lùi 2 bên mép màn hình (px)
     const screenWidth = window.innerWidth - padding;
 
     if (screenWidth < baseWidth) {
       const scale = screenWidth / baseWidth;
       wrapper.style.transform = `scale(${scale})`;
+      // Bù lại khoảng trống do scale tạo ra ở phía dưới
       wrapper.style.marginBottom = `-${(1 - scale) * wrapper.offsetHeight}px`;
     } else {
       wrapper.style.transform = 'none';
@@ -163,7 +165,3 @@
   window.addEventListener('load', autoFitMobile);
   window.addEventListener('resize', autoFitMobile);
 </script>
-
-<script src="script.js"></script>
-</body>
-</html>

@@ -38,49 +38,6 @@ body {
   transform-origin: top center;
 }
 
-/* ===== Toolbar (Cách tờ giấy 0.5cm = 19px) ===== */
-.toolbar {
-  width: 820px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 0 auto 19px;
-  padding: 0;
-}
-
-.btn {
-  flex: 1;
-  max-width: 120px;
-  border: none;
-  border-radius: 7px;
-  padding: 9px 12px;
-  font-weight: 600;
-  font-size: 13.5px;
-  cursor: pointer;
-  font-family: 'Source Sans 3', sans-serif;
-  text-align: center;
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-.btn-pdf {
-  background: var(--maroon-deep);
-  color: #FBF6EA;
-}
-
-.btn-img {
-  background: var(--gold);
-  color: #2B1B12;
-}
-
-.btn-reset {
-  background: transparent;
-  color: var(--maroon);
-  border: 1px solid var(--maroon);
-}
-
 /* ===== Outer ornate frame (Cố định 820px để xuất file chuẩn) ===== */
 .frame {
   width: 820px;
@@ -145,6 +102,49 @@ body {
   border-bottom-width: 3px;
   border-right-width: 3px;
   border-bottom-right-radius: 14px;
+}
+
+/* ===== Toolbar Nằm Ở Dưới (Cách tờ giấy 0.5cm = 19px) ===== */
+.toolbar {
+  width: 820px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 19px auto 0;
+  padding: 0;
+}
+
+.btn {
+  flex: 1;
+  max-width: 120px;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-pdf {
+  background: var(--maroon-deep);
+  color: #FBF6EA;
+}
+
+.btn-img {
+  background: var(--gold);
+  color: #2B1B12;
+}
+
+.btn-reset {
+  background: transparent;
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
 }
 
 /* ===== Header ===== */
@@ -290,11 +290,6 @@ body {
   padding: 10px 14px;
 }
 
-.section-tab svg {
-  width: 20px;
-  height: 20px;
-}
-
 .section-tab .lbl {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
@@ -341,17 +336,10 @@ body {
 }
 
 .announce-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   font-weight: 700;
   font-size: 13.5px;
   color: var(--ink);
   margin-bottom: 6px;
-}
-
-.announce-head svg {
-  color: var(--gold);
 }
 
 .announce textarea {
@@ -478,17 +466,13 @@ body {
   flex: 1;
 }
 
-.hide-on-export {
-  display: none !important;
-}
-
 /* ===== Desktop Layout (Màn hình lớn hơn 768px) ===== */
 @media (min-width: 768px) {
   body {
     padding: 20px 0 40px;
   }
   .toolbar {
-    margin-bottom: 19px;
+    margin-top: 19px;
   }
   .btn {
     flex: 0 0 auto;
@@ -523,10 +507,6 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 16px 10px;
-  }
-  .section-tab svg {
-    width: 30px;
-    height: 30px;
   }
   .section-body {
     padding: 12px 18px;

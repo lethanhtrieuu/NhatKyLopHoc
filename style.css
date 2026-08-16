@@ -69,16 +69,17 @@ body {
   padding: 7px 15px;
 }
 
-/* ===== Outer ornate frame ===== */
+/* ===== Outer ornate frame (Cố định 820px chuẩn Desktop) ===== */
 .frame {
-  width: 100%;
-  max-width: 820px;
+  width: 820px;
+  min-width: 820px;
   background: var(--paper);
   border-radius: 26px;
   border: 2px solid var(--maroon-deep);
   box-shadow: 0 12px 34px rgba(60, 20, 10, 0.18);
   padding: 8px;
   position: relative;
+  margin: 0 auto;
 }
 
 .frame-inner {
@@ -205,7 +206,7 @@ body {
 .doc-title {
   font-family: 'Playfair Display', serif;
   font-weight: 800;
-  font-size: clamp(26px, 5vw, 38px);
+  font-size: 38px;
   color: var(--maroon);
   letter-spacing: .02em;
   margin: 2px 0 0;
@@ -521,83 +522,11 @@ body {
   }
   .frame {
     box-shadow: none;
+    width: 100%;
     max-width: 100%;
   }
   @page {
     size: A4;
     margin: 8mm;
   }
-}
-
-/* ===== Responsive trên thiết bị di động ===== */
-@media (max-width: 600px) {
-  .frame-inner {
-    padding: 20px 16px 18px;
-  }
-  .info-box {
-    grid-template-columns: 1fr;
-  }
-  .header {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-  }
-  .logo {
-    margin-left: 0;
-  }
-  .school-name {
-    font-size: 12px;
-    letter-spacing: .06em;
-  }
-  .company-name {
-    font-size: 11.5px;
-    letter-spacing: 0;
-  }
-}
-
-/* ===== GHI ĐÈ KHI XUẤT ẢNH: ÉP GIAO DIỆN VỀ CHUẨN LAPTOP (820px) ===== */
-.frame.exporting-desktop {
-  width: 820px !important;
-  max-width: 820px !important;
-  min-width: 820px !important;
-}
-
-.frame.exporting-desktop .frame-inner {
-  padding: 26px 30px 24px !important;
-}
-
-.frame.exporting-desktop .header {
-  flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
-  text-align: left !important;
-}
-
-.frame.exporting-desktop .logo {
-  margin-left: 65px !important;
-}
-
-.frame.exporting-desktop .header-center {
-  text-align: center !important;
-}
-
-.frame.exporting-desktop .info-box {
-  grid-template-columns: 1fr 1fr !important;
-}
-
-.frame.exporting-desktop .section {
-  flex-direction: row !important;
-}
-
-.frame.exporting-desktop .section-tab {
-  flex: 0 0 150px !important;
-}
-
-.frame.exporting-desktop .school-name {
-  font-size: 15px !important;
-  letter-spacing: .12em !important;
-}
-
-.frame.exporting-desktop .company-name {
-  font-size: 15.5px !important;
-  letter-spacing: .02em !important;
 }
